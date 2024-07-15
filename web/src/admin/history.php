@@ -4,8 +4,8 @@ if (
     isset($_SESSION["User"]) &&
     $_SESSION["Role"] === "Admin"
 ) {
-    include_once('data/history.php');
-    include_once('../DB_Config/db_config.php');
+    include_once('./func/history.php');
+    include_once "../DB_Config/connectDB.php";
     $history = getALLHistory($conn, $_SESSION['ID']);
 ?>
     <!DOCTYPE html>
@@ -23,7 +23,7 @@ if (
 
     <body>
         <?php
-        include('inc/side-nav.php');
+        include_once('inc/side-nav.php');
         if ($history != 0) {
             $count = 0;
         ?>

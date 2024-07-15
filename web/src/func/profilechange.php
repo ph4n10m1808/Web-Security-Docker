@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('../DB_Config/db_config.php');
-include('data/profile.php');
+include_once('../DB_Config/db_config.php');
+include_once('./func/profile.php');
 if (
     isset($_SESSION["ID"]) &&
     $_POST['fullname'] &&
@@ -13,15 +13,15 @@ if (
     $email = $_POST['email'];
     if (empty($fullname)) {
         $em = "Vui lòng nhập tên đầy đủ!";
-        header("Location: ../profile.php?error=" . urlencode($em));
+        header("Location: ../profile.php?error=" . base64_encode($em));
         exit;
     } else if (empty($phonenumber)) {
         $em = "Vui lòng nhập số điện thoại";
-        header("Location: ../profile.php?error=" . urlencode($em));
+        header("Location: ../profile.php?error=" . base64_encode($em));
         exit;
     } else if (empty($email)) {
         $em = "Vui lòng nhập địa chỉ email!";
-        header("Location: ../profile.php?error=" . urlencode($em));
+        header("Location: ../profile.php?error=" . base64_encode($em));
         exit;
     } else {
         $image_name = $_FILES['file']['name'];
@@ -32,7 +32,7 @@ if (
             if ($error === 0) {
                 if ($image_size > 20971520) {
                     $em = "Xin Lỗi, File Tải Lên lớn hơn 20MB";
-                    header("Location: ../profile.php?error=" . urlencode($em));
+                    header("Location: ../profile.php?error=" . base64_encode($em));
                     exit;
                 } else {
                     $image_ex = pathinfo($image_name, PATHINFO_EXTENSION);
@@ -48,7 +48,7 @@ if (
                     $stmt1 = $conn->prepare($sql1);
                     $stmt1->execute([$_SESSION["ID"], 1]);
                     $sm = "Đã thay đổi thông tin cá nhân thành công!";
-                    header("Location: ../profile.php?success=" . urlencode($sm));
+                    header("Location: ../profile.php?success=" . base64_encode($sm));
                     exit;
                 }
             } else {
@@ -64,7 +64,7 @@ if (
             $stmt1 = $conn->prepare($sql1);
             $stmt1->execute([$_SESSION["ID"], 1]);
             $sm = "Đã thay đổi thông tin cá nhân thành công!";
-            header("Location: ../profile.php?success=" . urlencode($sm));
+            header("Location: ../profile.php?success=" . base64_encode($sm));
             exit;
         }
     }
@@ -72,8 +72,9 @@ if (
     <script>
         alert("Bạn chưa đăng nhập!");
         setTimeout(function() {
-            window.location.href = "/Project-PHP/index.php";
+            window.location.href = "../index.php";
         }, 0)
     </script>
 <?php
 }
+?>

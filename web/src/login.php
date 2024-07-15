@@ -5,7 +5,7 @@ if (isset($_SESSION['User'])) {
 	<script>
 		alert("Bạn đã đăng nhập rồi!");
 		setTimeout(function() {
-			window.location.href = "/Project-PHP/index.php";
+			window.location.href = "../index.php";
 		}, 0)
 	</script>
 <?php
@@ -26,18 +26,18 @@ if (isset($_SESSION['User'])) {
 
 	<div class="d-flex justify-content-center align-items-center vh-100">
 
-		<form class="shadow w-450 p-3" action="php/login.php" method="post">
+		<form class="shadow w-450 p-3" action="./func/login.php" method="post">
 
 			<h4 class="display-4  fs-1">Đăng Nhập</h4><br>
 			<?php if (isset($_GET['error'])) { ?>
 				<div class="alert alert-danger" role="alert">
-					<?php echo htmlspecialchars($_GET['error']); ?>
+					<?php echo base64_decode($_GET['error']); ?>
 				</div>
 			<?php } ?>
 
 			<div class="mb-3">
 				<label class="form-label">Tên Đăng Nhập</label>
-				<input type="text" class="form-control" name="uname" value="<?php echo (isset($_GET['uname'])) ? htmlspecialchars($_GET['uname']) : "" ?>">
+				<input type="text" class="form-control" name="uname" value="<?php echo (isset($_GET['uname'])) ? base64_decode($_GET['uname']) : "" ?>">
 			</div>
 
 			<div class="mb-3">

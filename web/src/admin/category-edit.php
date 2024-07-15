@@ -6,9 +6,9 @@ if (
     $_GET['ID']
 ) {
     $id = $_GET['ID'];
-    include('inc/side-nav.php');
-    include_once("data/category.php");
-    include("../DB_Config/db_config.php");
+    include_once('inc/side-nav.php');
+    include_once("./func/category.php");
+    include_once("../DB_Config/connectDB.php");
     $category = getCategoryNamebyID($conn, $id)
 ?>
     <!DOCTYPE html>
@@ -32,13 +32,13 @@ if (
             </h3>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-warning">
-                    <?= htmlspecialchars($_GET['error']) ?>
+                    <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
 
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success">
-                    <?= htmlspecialchars($_GET['success']) ?>
+                    <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
 

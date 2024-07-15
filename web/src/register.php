@@ -5,7 +5,7 @@ if (isset($_SESSION['User'])) {
     <script>
         alert("Bạn đã đăng nhập rồi!");
         setTimeout(function() {
-            window.location.href = "/Project-PHP/index.php";
+            window.location.href = "../index.php";
         }, 0)
     </script>
 <?php
@@ -25,35 +25,35 @@ if (isset($_SESSION['User'])) {
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
 
-        <form class="shadow w-450 p-3" action="php/register.php" method="post">
+        <form class="shadow w-450 p-3" action="./func/register.php" method="post">
 
             <h4 class="display-4  fs-1">Tạo tài khoản mới</h4><br>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
-                    <?php echo htmlspecialchars($_GET['error']); ?>
+                    <?php echo base64_decode($_GET['error']); ?>
                 </div>
             <?php } ?>
 
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success" role="alert">
-                    <?php echo htmlspecialchars($_GET['success']); ?>
+                    <?php echo base64_decode($_GET['success']); ?>
                 </div>
             <?php } ?>
             <div class="mb-3">
                 <label class="form-label">Tên đầy đủ</label>
-                <input type="text" class="form-control" name="fname" value="<?php echo (isset($_GET['fname'])) ? htmlspecialchars($_GET['fname']) : "" ?>">
+                <input type="text" class="form-control" name="fname" value="<?php echo (isset($_GET['fname'])) ? base64_decode($_GET['fname']) : "" ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" value="<?php echo (isset($_GET['email'])) ? htmlspecialchars($_GET['email']) : "" ?>">
+                <input type="email" class="form-control" name="email" value="<?php echo (isset($_GET['email'])) ? base64_decode($_GET['email']) : "" ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Số điện thoại</label>
-                <input type="text" class="form-control" name="phone" value="<?php echo (isset($_GET['phone'])) ? htmlspecialchars($_GET['phone']) : "" ?>">
+                <input type="text" class="form-control" name="phone" value="<?php echo (isset($_GET['phone'])) ? base64_decode($_GET['phone']) : "" ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Tên Đăng Nhập</label>
-                <input type="text" class="form-control" name="uname" value="<?php echo (isset($_GET['uname'])) ? htmlspecialchars($_GET['uname']) : "" ?>">
+                <input type="text" class="form-control" name="uname" value="<?php echo (isset($_GET['uname'])) ? base64_decode($_GET['uname']) : "" ?>">
             </div>
 
             <div class="mb-3">

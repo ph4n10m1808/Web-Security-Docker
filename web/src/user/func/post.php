@@ -29,11 +29,11 @@ function deleteByIdPost($conn, $id): void
     $res = $stmt->execute([$id]);
     if ($res) {
         $em = "Xóa thành công";
-        header("Location: post.php?success=" . urlencode($em));
+        header("Location: post.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Xóa thất Bại";
-        header("Location: post.php?error=" . urlencode($em));
+        header("Location: post.php?error=" . base64_encode($em));
         exit;
     }
 }

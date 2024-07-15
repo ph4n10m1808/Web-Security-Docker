@@ -10,7 +10,7 @@ session_start();
     </h2>
     <div class="d-flex align-items-center">
         <i class="fa fa-user" aria-hidden="true"></i> &nbsp;
-        <span><a href="/Project-PHP/profile.php" class="link-secondary"><?php echo $_SESSION['User'] ?></a></span>
+        <span><a href="../profile.php" class="link-secondary"><?php echo $_SESSION['User'] ?></a></span>
     </div>
 
 </header>
@@ -22,7 +22,7 @@ session_start();
         </div>
         <ul class="navList">
             <li>
-                <a href="/Project-PHP/index.php">
+                <a href="../index.php">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span>Trang chủ</span>
                 </a>

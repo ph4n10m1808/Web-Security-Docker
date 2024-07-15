@@ -1,12 +1,9 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-include "../../DB_Config/db_config.php";
+include_once "../../DB_Config/db_config.php";
 if (
     isset($_SESSION["User"]) &&
-    $_SESSION["Role"] === "Admin"
+    $_SESSION["Role"] === "User"
 ) {
     if (
         isset($_POST['title']) &&
@@ -44,7 +41,7 @@ if (
                     $_SESSION['Image'] = $new_image_name;
                     $sql = "UPDATE post SET Post_Tittle = ?, Post_Content = ?, Category_ID = ?, Cover_Url = ?, Status_ID = ? WHERE Post_ID = ?";
                     $stmt = $conn->prepare($sql);
-                    $res = $stmt->execute([$title, $text, $category, $new_image_name, 1, $id]);
+                    $res = $stmt->execute([$title, $text, $category, $new_image_name, 0, $id]);
                     if ($res) {
                         $sql1 = "INSERT INTO history(User_ID, Post_Tittle, Event_ID) VALUES (?,?,?)";
                         $stmt1 = $conn->prepare($sql1);
@@ -54,7 +51,7 @@ if (
                         exit;
                     } else {
                         $em = "Lỗi Không Xác Định!";
-                        header("Location: ../post-edit.php?ID=$id&error=" . urlencode($em));
+                        header("Location: ../post-edit.php?ID=$id&error=" . base64_encode($em));
                         exit;
                     }
                 }
@@ -62,17 +59,17 @@ if (
         } else {
             $sql = "UPDATE post SET Post_Tittle = ?, Post_Content = ?, Category_ID = ?, Status_ID = ? WHERE Post_ID = ?";
             $stmt = $conn->prepare($sql);
-            $res = $stmt->execute([$title, $text, $category, 1, $id]);
+            $res = $stmt->execute([$title, $text, $category, 0, $id]);
             if ($res) {
                 $sql1 = "INSERT INTO history(User_ID, Post_Tittle, Event_ID) VALUES (?,?,?)";
                 $stmt1 = $conn->prepare($sql1);
                 $stmt1->execute([$_SESSION['ID'], $tittle, 6]);
                 $sm = "Sửa Bài Viết Thành Công!";
-                header("Location: ../post-edit.php?ID=$id&success=" . urlencode($sm));
+                header("Location: ../post-edit.php?ID=$id&success=" . base64_encode($sm));
                 exit;
             } else {
                 $em = "Lỗi Không xác định";
-                header("Location: ../post-edit.php?ID=$id&error=" . urlencode($em));
+                header("Location: ../post-edit.php?ID=$id&error=" . base64_encode($em));
                 exit;
             }
         }

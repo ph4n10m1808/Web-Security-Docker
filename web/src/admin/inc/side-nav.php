@@ -3,14 +3,15 @@ session_start();
 ?>
 <input type="checkbox" id="checkbox">
 <header class="header">
-    <h2 class="u-name link-secondary"><a href="../admin/dashboard.php"><b>MyBlog(ADMIN Panel)</b></a>
+    <h2 class="u-name link-secondary"><a href="../admin/dashboard.php"><b>MyBlog
+                (ADMIN Panel)</b></a>
         <label for="checkbox">
             <i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
         </label>
     </h2>
     <div class="d-flex align-items-center">
         <i class="fa fa-user" aria-hidden="true"></i> &nbsp;
-        <span><a href="/Project-PHP/profile.php" class="link-secondary"><?php echo $_SESSION['User'] ?></a></span>
+        <span><a href="../profile.php" class="link-secondary"><?php echo $_SESSION['User'] ?></a></span>
     </div>
 
 </header>
@@ -22,7 +23,7 @@ session_start();
         </div>
         <ul class="navList">
             <li>
-                <a href="/Project-PHP/index.php">
+                <a href="../index.php">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span>Trang chủ</span>
                 </a>
@@ -45,12 +46,12 @@ session_start();
                     <span>Danh Mục</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="../admin/statistics.php">
                     <i class="fa fa-area-chart" aria-hidden="true"></i>
                     <span>Thống Kê</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="../admin/censorship.php">
                     <i class="fa fa-flag-checkered" aria-hidden="true"></i>

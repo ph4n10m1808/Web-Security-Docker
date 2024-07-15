@@ -5,8 +5,8 @@ if (
     $_SESSION["Role"] === "User"
 ) {
 
-    include_once("data/post.php");
-    include("../DB_Config/db_config.php");
+    include_once("./func/post.php");
+    include_once("../DB_Config/connectDB.php");
     $post = getAllPost($conn, $_SESSION["ID"]);
 ?>
     <!DOCTYPE html>
@@ -24,7 +24,7 @@ if (
 
     <body>
         <?php
-        include('inc/side-nav.php');
+        include_once('inc/side-nav.php');
         ?>
         <div>
             <h3 class="mb-3 text-center">Tất Cả Bài Viết
@@ -34,13 +34,13 @@ if (
             </h3>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-warning">
-                    <?= htmlspecialchars($_GET['error']) ?>
+                    <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
 
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success">
-                    <?= htmlspecialchars($_GET['success']) ?>
+                    <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
             <?php if ($post != 0) {

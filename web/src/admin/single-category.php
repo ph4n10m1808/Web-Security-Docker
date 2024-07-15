@@ -5,8 +5,8 @@ if (
     $_SESSION["Role"] === "Admin" &&
     $_GET['ID']
 ) {
-    include_once('../DB_Config/db_config.php');
-    include_once('data/category.php');
+    include_once "../DB_Config/connectDB.php";
+    include_once('./func/category.php');
     $id = $_GET['ID'];
     $category = getCategoryNamebyID($conn, $id);
     $post = getByIdDeep($conn, $id);
@@ -25,7 +25,7 @@ if (
 
     <body>
         <?php
-        include('inc/side-nav.php');
+        include_once('inc/side-nav.php');
         ?>
         <h3 class="mb-3 text-center">
             Bài Viết Của Danh Mục <?php echo $category ?>
@@ -36,12 +36,12 @@ if (
         </h3>
         <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-warning">
-                <?= htmlspecialchars($_GET['error']) ?>
+                <?= base64_decode($_GET['error']) ?>
             </div>
         <?php } ?>
         <?php if (isset($_GET['success'])) { ?>
             <div class="alert alert-success">
-                <?= htmlspecialchars($_GET['success']) ?>
+                <?= base64_decode($_GET['success']) ?>
             </div>
         <?php } ?>
         <?php if ($post != 0) {

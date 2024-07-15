@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('inc/menu.php');
-include('inc/funcs.php');
+include_once('inc/menu.php');
+include_once "./func/funcs.php";
 $types = GetAll_types();
 if (!isset($_GET['dm'])) {
     $posts = GetAll_post();

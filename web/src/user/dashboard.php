@@ -19,7 +19,7 @@ if (
     </head>
 
     <body>
-        <?php include('inc/side-nav.php');
+        <?php include_once('inc/side-nav.php');
         ?>
         <div class="text-center fs-1 fw-bolder">
             <br>

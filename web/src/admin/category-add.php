@@ -4,7 +4,7 @@ if (
     isset($_SESSION["User"]) &&
     $_SESSION["Role"] === "Admin"
 ) {
-    include_once("data/category.php");
+    include_once("././func/category.php");
     include("../DB_Config/db_config.php");
 ?>
     <!DOCTYPE html>
@@ -22,7 +22,7 @@ if (
 
     <body>
         <?php
-        include('inc/side-nav.php');
+        include('./inc/side-nav.php');
         ?>
         <div>
             <h3 class="mb-3 text-center">Tạo Danh Mục Mới
@@ -31,12 +31,12 @@ if (
             </h3>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-warning">
-                    <?= htmlspecialchars($_GET['error']) ?>
+                    <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success">
-                    <?= htmlspecialchars($_GET['success']) ?>
+                    <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
             <form class="shadow p-3" action="req/category-create.php" method="post">

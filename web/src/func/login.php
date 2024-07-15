@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../DB_Config/db_config.php');
+include_once "../DB_Config/connectDB.php";
 if (
     isset($_POST['uname']) &&
     isset($_POST['pass'])
@@ -38,20 +38,20 @@ if (
                 $_SESSION['User'] = $username;
                 $_SESSION['Role'] = $role;
                 $_SESSION['Avatar'] = $avatar;
-                header("Location: /Project-PHP/index.php");
+                header("Location: ../index.php");
                 exit;
             } else {
                 $em = "Sai tên đăng nhập hoặc mật khẩu";
-                header("Location: ../login.php?error=" . urlencode($em));
+                header("Location: ../login.php?error=" . base64_encode($em));
                 exit;
             }
         } else {
             $em = "Sai tên đăng nhập hoặc mật khẩu";
-            header("Location: ../login.php?error=" . urlencode($em));
+            header("Location: ../login.php?error=" . base64_encode($em));
             exit;
         }
     }
 } else {
-    header("Location: ../login.php?error=" . urlencode("error"));
+    header("Location: ../login.php?error=" . base64_encode("error"));
     exit;
 }

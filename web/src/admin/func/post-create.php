@@ -1,9 +1,9 @@
 <?php
 session_start();
-include "../../DB_Config/db_config.php";
+include_once "../../DB_Config/connectDB.php";
 if (
     isset($_SESSION["User"]) &&
-    $_SESSION["Role"] === "User"
+    $_SESSION["Role"] === "Admin"
 ) {
     if (
         isset($_POST['title']) &&
@@ -16,7 +16,7 @@ if (
         $category = $_POST['category'];
         if (empty($title)) {
             $em = "Tên Tiêu Đề Bị Trống";
-            header("Location: ../post-add.php?error=" . urlencode($em));
+            header("Location: ../post-add.php?error=" . base64_encode($em));
             exit;
         } else if (empty($category)) {
             $category = 0;
@@ -29,7 +29,7 @@ if (
             if ($error === 0) {
                 if ($image_size > 20971520) {
                     $em = "Xin Lỗi, File Tải Lên lớn hơn 20MB";
-                    header("Location: ../post-add.php?error=" . urlencode($em));
+                    header("Location: ../post-add.php?error=" . base64_encode($em));
                     exit;
                 } else {
                     $image_ex = pathinfo($image_name, PATHINFO_EXTENSION);
@@ -40,17 +40,17 @@ if (
                     move_uploaded_file($image_temp, $image_path);
                     $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Cover_Url, Status_ID) VALUES(?,?,?,?,?,?)";
                     $stmt = $conn->prepare($sql);
-                    $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, $new_image_name, 0]);
+                    $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, $new_image_name, 1]);
                     if ($res) {
                         $sql1 = "INSERT INTO history(User_ID, Post_Tittle, Event_ID) VALUES (?,?,?)";
                         $stmt1 = $conn->prepare($sql1);
                         $stmt1->execute([$_SESSION['ID'], $title, 3]);
                         $sm = "Thêm Bài Viết Thành Công!";
-                        header("Location: ../post-add.php?success=" . urlencode($sm));
+                        header("Location: ../post-add.php?success=" . base64_encode($sm));
                         exit;
                     } else {
                         $em = "Lỗi Không Xác Định!";
-                        header("Location: ../post-add.php?error=" . urlencode($em));
+                        header("Location: ../post-add.php?error=" . base64_encode($em));
                         exit;
                     }
                 }
@@ -58,17 +58,17 @@ if (
         } else {
             $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Status_Check) VALUES(?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, 0]);
+            $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, 3]);
             if ($res) {
                 $sql1 = "INSERT INTO history(User_ID, Post_Tittle, Event_ID) VALUES (?,?,?)";
                 $stmt1 = $conn->prepare($sql1);
                 $stmt1->execute([$_SESSION['ID'], $tittle, 3]);
                 $sm = "Thêm Bài Viết mới Thành Công";
-                header("Location: ../post-add.php?success=" . urlencode($sm));
+                header("Location: ../post-add.php?success=" . base64_encode($sm));
                 exit;
             } else {
                 $em = "Lỗi Không xác định";
-                header("Location: ../post-add.php?error=" . urlencode($em));
+                header("Location: ../post-add.php?error=" . base64_encode($em));
                 exit;
             }
         }

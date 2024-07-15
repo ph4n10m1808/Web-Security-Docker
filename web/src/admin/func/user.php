@@ -20,11 +20,11 @@ function deleteByIdUser($conn, $id): void
     $res = $stmt->execute([$id]);
     if ($res) {
         $em = "Xóa thành công!";
-        header("Location: user.php?success=" . urlencode($em));
+        header("Location: user.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Xóa Thất Bại!";
-        header("Location: user.php?error=" . urlencode($em));
+        header("Location: user.php?error=" . base64_encode($em));
         exit;
     }
 }

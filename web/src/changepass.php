@@ -2,7 +2,7 @@
 <html lang="en">
 <?php
 session_start();
-include('inc/menu.php')
+include_once('inc/menu.php')
 ?>
 
 <head>
@@ -24,15 +24,15 @@ include('inc/menu.php')
                 </div>
                 <?php if (isset($_GET['error'])) { ?>
                     <div class="alert alert-warning">
-                        <?= htmlspecialchars($_GET['error']) ?>
+                        <?= base64_decode($_GET['error']) ?>
                     </div>
                 <?php } ?>
                 <?php if (isset($_GET['success'])) { ?>
                     <div class="alert alert-success">
-                        <?= htmlspecialchars($_GET['success']) ?>
+                        <?= base64_decode($_GET['success']) ?>
                     </div>
                 <?php } ?>
-                <form action="php/changepass.php" method="post">
+                <form action="./func/changepass.php" method="post">
                     <div class="col-md-12">
                         <label class="form-label">Mật khẩu cũ *</label>
                         <input type="password" class="form-control" name="passwordold">

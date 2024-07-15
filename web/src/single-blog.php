@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('inc/funcs.php');
+include_once('inc/funcs.php');
 
 if (isset($_GET['id'])) {
     $post = postDetail($_GET['id']);
@@ -27,9 +27,10 @@ if (isset($_GET['id'])) {
 
 <body>
     <style>
-        *{
+        * {
             word-break: break-word;
         }
+
         #content p {
             width: 100%;
         }
@@ -38,7 +39,7 @@ if (isset($_GET['id'])) {
             width: auto;
         }
     </style>
-    <?php include('inc/menu.php'); ?>
+    <?php include_once('inc/menu.php'); ?>
 
     <div class="container-fluid mx-4" style="width: 100%;">
         <div class="row">
@@ -135,7 +136,7 @@ if (isset($_GET['id'])) {
             // alert(comment)
             $.ajax({
                 type: "POST",
-                url: "php/sendComment.php",
+                url: "./func/sendComment.php",
                 data: {
                     comment: comment,
                     idPost: <?= $_GET['id'] ?>,
@@ -175,7 +176,7 @@ if (isset($_GET['id'])) {
                 var content = $(this).parent().find('textarea').val()
                 $.ajax({
                     type: "POST",
-                    url: "php/Rep.php",
+                    url: "./func/Rep.php",
                     data: {
                         comment: content,
                         idCom: comID,

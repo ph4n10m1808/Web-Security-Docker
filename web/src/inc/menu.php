@@ -3,26 +3,26 @@ session_start();
 ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/Project-PHP/index.php">MyBlog</a>
+        <a class="navbar-brand" href="../index.php">MyBlog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/Project-PHP/index.php">Trang chủ</a>
+                    <a class="nav-link active" aria-current="page" href="../index.php">Trang chủ</a>
                 </li>
                 &nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="/Project-PHP/blog.php">Bài Viết</a>
+                    <a class="nav-link" href="../blog.php">Bài Viết</a>
                 </li>
                 &nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="/Project-PHP/about.php">Về Chúng tôi</a>
+                    <a class="nav-link" href="../about.php">Về Chúng tôi</a>
                 </li>
                 &nbsp;&nbsp;&nbsp;
                 <li class="nav-item">
-                    <a class="nav-link" href="/Project-PHP/contact.php">Liên hệ</a>
+                    <a class="nav-link" href="../contact.php">Liên hệ</a>
                 </li>
                 &nbsp;&nbsp;&nbsp;
                 <?php
@@ -35,9 +35,9 @@ session_start();
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 PHP;
                     if ($_SESSION["Role"] === "Admin") {
-                        echo '<li><a class="dropdown-item" href="/Project-PHP/admin/dashboard.php">Trang ADMIN</a></li>';
+                        echo '<li><a class="dropdown-item" href="../admin/dashboard.php">Trang ADMIN</a></li>';
                     } else if ($_SESSION['Role'] === "User") {
-                        echo '<li><a class="dropdown-item" href="/Project-PHP/user/dashboard.php">Quản Lý Bài Viết</a></li>';
+                        echo '<li><a class="dropdown-item" href="../user/dashboard.php">Quản Lý Bài Viết</a></li>';
                     }
                     echo '<li><a class="dropdown-item" href="profile.php">Trang cá nhân</a></li>';
                     echo '<li><a class="dropdown-item" href="changepass.php">Thay đổi mật khẩu</a></li>';

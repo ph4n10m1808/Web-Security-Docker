@@ -7,8 +7,8 @@ if (
     $_GET['ID']
 ) {
     $post_id = $_GET['ID'];
-    include_once("data/post.php");
-    include_once("../DB_Config/db_config.php");
+    include_once("./func/post.php");
+    include_once("../DB_Config/connectDB.php");
     $post = getByIdDeep($conn, $post_id);
 ?>
     <!DOCTYPE html>
@@ -26,7 +26,7 @@ if (
 
     <body>
         <?php
-        include "inc/side-nav.php";
+        include_once "inc/side-nav.php";
         ?>
         <h3 class="mb-3 text-center">
             <br>

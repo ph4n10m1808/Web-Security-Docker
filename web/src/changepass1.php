@@ -5,7 +5,7 @@ if (isset($_SESSION['User'])) {
     <script>
         alert("Bạn đã đăng nhập rồi!");
         setTimeout(function() {
-            window.location.href = "/Project-PHP/index.php";
+            window.location.href = "../index.php";
         }, 0)
     </script>
 <?php
@@ -26,23 +26,23 @@ if (isset($_SESSION['User'])) {
 
     <div class="d-flex justify-content-center align-items-center vh-100">
 
-        <form class="shadow w-450 p-3" action="php/changepass1.php" method="post">
+        <form class="shadow w-450 p-3" action="./func/changepass1.php" method="post">
 
             <h4 class="display-4  fs-1">Thay đổi mật khẩu</h4><br>
             <?php if (isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
-                    <?php echo htmlspecialchars($_GET['error']); ?>
+                    <?php echo base64_decode($_GET['error']); ?>
                 </div>
             <?php } ?>
             <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success" role="alert">
-                    <?php echo htmlspecialchars($_GET['success']); ?>
+                    <?php echo base64_decode($_GET['success']); ?>
                 </div>
             <?php } ?>
 
             <div class="mb-3">
                 <label class="form-label">Mật khẩu mới</label>
-                <input type="password" class="form-control" name="pass" value="<?php echo (isset($_GET['pass'])) ? htmlspecialchars($_GET['pass']) : "" ?>">
+                <input type="password" class="form-control" name="pass" value="<?php echo (isset($_GET['pass'])) ? base64_decode($_GET['pass']) : "" ?>">
             </div>
 
             <div class="mb-3">

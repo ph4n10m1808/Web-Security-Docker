@@ -1,8 +1,8 @@
 <?php
 session_start();
-include('inc/menu.php');
-include('inc/funcs.php');
-if (!isset($_POST['search']) ||$_POST['search']=='' ) {
+include_once('inc/menu.php');
+include_once('inc/funcs.php');
+if (!isset($_POST['search']) || $_POST['search'] == '') {
     echo "<script>
             window.location.href = 'index.php';
         </script>";
@@ -30,27 +30,28 @@ $posts = Search($_POST['search']);
             <main class="main-blog row ">
 
                 <?php
-                if($posts!= -1){
-                foreach ($posts as $post) { ?>
-                    <div class="col-12 p-1">
-                        <div class="card mb-3" style="width: 100%; height: 280px;">
-                            <div class="row g-0" style=" height: 100%;">
-                                <div class="col-md-5" style=" height: 100%;">
-                                    <img style=" height: 100%;width: 100%;" src="upload/blog/<?php echo $post['Cover_Url'] ?>" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $post['Post_Tittle'] ?></h5>
-                                        <p class="card-text"><small class="text-muted">Ngày đăng <?php echo $post['Time_Create'] ?></small></p>
-                                        <a href="single-blog.php?id=<?php echo $post['Post_ID'] ?>" class="btn btn-primary">Đọc thêm</a>
+                if ($posts != -1) {
+                    foreach ($posts as $post) { ?>
+                        <div class="col-12 p-1">
+                            <div class="card mb-3" style="width: 100%; height: 280px;">
+                                <div class="row g-0" style=" height: 100%;">
+                                    <div class="col-md-5" style=" height: 100%;">
+                                        <img style=" height: 100%;width: 100%;" src="upload/blog/<?php echo $post['Cover_Url'] ?>" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $post['Post_Tittle'] ?></h5>
+                                            <p class="card-text"><small class="text-muted">Ngày đăng <?php echo $post['Time_Create'] ?></small></p>
+                                            <a href="single-blog.php?id=<?php echo $post['Post_ID'] ?>" class="btn btn-primary">Đọc thêm</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php
-                } }else{?>
-                <h1 class="text-center">Không tìm thấy</h1>
+                    <?php
+                    }
+                } else { ?>
+                    <h1 class="text-center">Không tìm thấy</h1>
                 <?php } ?>
             </main>
         </section>

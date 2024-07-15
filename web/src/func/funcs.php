@@ -1,7 +1,7 @@
 <?php
 function GetAll_post()
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $posts = [];
     $sql = "SELECT * FROM post WHERE Status_ID = 1 ORDER BY Time_Create DESC";
     $rs = $connect->query($sql);
@@ -15,7 +15,7 @@ function GetAll_post()
 
 function postDetail($id)
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $sql = "SELECT * FROM post WHERE Status_ID = 1 AND Post_ID = $id ORDER BY Time_Create DESC";
     $rs = $connect->query($sql);
     if ($rs->num_rows == 1) {
@@ -27,7 +27,7 @@ function postDetail($id)
 }
 function GetPost_ByType($iddm)
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $posts = [];
     $sql = "SELECT * FROM post WHERE Status_ID = 1 AND Category_ID = $iddm";
     $rs = $connect->query($sql);
@@ -40,7 +40,7 @@ function GetPost_ByType($iddm)
 }
 function GetAll_types()
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $types = [];
     $sql = "SELECT * FROM `category` ";
     $rs = $connect->query($sql);
@@ -54,7 +54,7 @@ function GetAll_types()
 
 function GetComments($idPost)
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $coms = [];
     $sql = "SELECT Username,comment.ID,Comment,Post_ID,Date(comment.Time_Create) as Time_Create,ID_Reply FROM comment JOIN account ON comment.User_ID = account.ID WHERE Post_ID = $idPost;";
     $rs = $connect->query($sql);
@@ -70,7 +70,7 @@ function GetComments($idPost)
 
 function Search($tk)
 {
-    $connect  = new mysqli('localhost', 'root', 'Administrator', 'PHP_Myblog', 3306);
+    $connect  = new mysqli(getenv('MYSQL_HOSTNAME'), getenv('MYSQL_USER'), getenv('MYSQL_PASSWORD'), getenv('MYSQL_DATABASE'), 3306);
     $arr = [];
     $sql = "SELECT * FROM post INNER JOIN category ON post.Category_ID = category.ID WHERE post.Status_ID = 1 AND (Post_Tittle LIKE '%$tk%' OR Post_Content LIKE '%$tk%' OR category.Category_Name LIKE '%$tk%');";
     $rs = $connect->query($sql);

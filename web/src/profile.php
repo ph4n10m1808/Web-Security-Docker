@@ -1,8 +1,8 @@
 <?php
 session_start();
-include_once('DB_Config/db_config.php');
-include_once('php/data/profile.php');
-include_once('inc/menu.php');
+include_once('./DB_Config/connectDB.php');
+include_once('./func/profile.php');
+include_once('./inc/menu.php');
 if ($_SESSION['User']) {
     $profile = getInfoUser($conn, $_SESSION['ID']);
 ?>
@@ -30,15 +30,15 @@ if ($_SESSION['User']) {
                     </div>
                     <?php if (isset($_GET['error'])) { ?>
                         <div class="alert alert-warning">
-                            <?= htmlspecialchars($_GET['error']) ?>
+                            <?= base64_decode($_GET['error']) ?>
                         </div>
                     <?php } ?>
                     <?php if (isset($_GET['success'])) { ?>
                         <div class="alert alert-success">
-                            <?= htmlspecialchars($_GET['success']) ?>
+                            <?= base64_decode($_GET['success']) ?>
                         </div>
                     <?php } ?>
-                    <form class="file-upload" action="php/profilechange.php" method="post" enctype="multipart/form-data">
+                    <form class="file-upload" action="./func/profilechange.php" method="post" enctype="multipart/form-data">
                         <div class="row mb-5 gx-5">
                             <div class="col-xxl-8 mb-5 mb-xxl-0">
                                 <div class="bg-secondary-soft px-4 py-5 rounded">
@@ -112,7 +112,7 @@ if ($_SESSION['User']) {
     <script>
         alert("Không có quyền vào trang này khi chưa đăng nhập!");
         setTimeout(function() {
-            window.location.href = "/Project-PHP/index.php";
+            window.location.href = "../index.php";
         }, 0)
     </script>
 <?php

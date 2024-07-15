@@ -31,11 +31,11 @@ function deleteByIdCategory($conn, $id): void
     $res = $stmt->execute([$id]);
     if ($res) {
         $em = "Xóa thành công!";
-        header("Location: category.php?success=" . urlencode($em));
+        header("Location: category.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Lỗi không xác định!";
-        header("Location: category.php?error=" . urlencode($em));
+        header("Location: category.php?error=" . base64_encode($em));
         exit;
     }
 }
@@ -43,7 +43,9 @@ function deleteByIdCategory($conn, $id): void
 //Get Post in Category
 function getByIdDeep($conn, $id)
 {
-    $sql = "SELECT post.Post_ID,account.Username, post.Post_Tittle, post.Post_Content,category.Category_Name,post.Time_Create, post.Cover_Url, post_status.Status_Name FROM post INNER JOIN account ON post.Writer_ID = account.id INNER JOIN category ON post.Category_ID = category.id INNER JOIN post_status on post.Status_ID = post_status.Status_ID WHERE category.ID = ? ORDER BY post.Time_Create DESC";
+    $sql = "SELECT post.Post_ID,account.Username, post.Post_Tittle, post.Post_Content,category.Category_Name,post.Time_Create, post.Cover_Url, post_status.Status_Name
+            FROM post INNER JOIN account ON post.Writer_ID = account.id INNER JOIN category ON post.Category_ID = category.id INNER JOIN post_status on post.Status_ID = post_status.Status_ID
+            WHERE category.ID = ? ORDER BY post.Time_Create DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
     if ($stmt->rowCount() >= 1) {

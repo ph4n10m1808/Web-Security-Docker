@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../DB_Config/db_config.php');
+include_once('../DB_Config/db_config.php');
 if (
     isset($_POST['uname']) &&
     isset($_POST['email'])
@@ -28,20 +28,20 @@ if (
             $email1 = $user['Email'];
             if ($username === $uname && $email === $email1) {
                 $_SESSION["Username"] = $username;
-                header("Location: /Project-PHP/changepass1.php");
+                header("Location: ../changepass1.php");
                 exit;
             } else {
                 $em = "Sai tên đăng nhập hoặc địa chỉ email!";
-                header("Location: ../forgetpass.php?error=" . urlencode($em));
+                header("Location: ../forgetpass.php?error=" . base64_encode($em));
                 exit;
             }
         } else {
             $em = "Sai tên đăng nhập hoặc địa chỉ email!";
-            header("Location: ../forgetpass.php?error=" . urlencode($em));
+            header("Location: ../forgetpass.php?error=" . base64_encode($em));
             exit;
         }
     }
 } else {
-    header("Location: ../forgetpass.php?error=" . urlencode("error"));
+    header("Location: ../forgetpass.php?error=" . base64_encode("error"));
     exit;
 }
