@@ -5,8 +5,8 @@ if (
     $_SESSION["Role"] === "Admin" &&
     $_GET['ID']
 ) {
-    include_once("././func/category.php");
-    include_once("../DB_Config/connectDB.php");
+    include_once("./category.php");
+    include_once("../../DB_Config/connectDB.php");
     $id = $_GET['ID'];
     $name = getCategoryNamebyID($conn, $id);
     $sql1 = "INSERT INTO history(User_ID,Category_Name,Event_ID) values (?,?,?)";

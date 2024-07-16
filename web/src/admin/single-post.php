@@ -6,6 +6,7 @@ if (
     $_GET['ID']
 ) {
     $post_id = $_GET['ID'];
+    include_once "./inc/side-nav.php";
     include_once("./func/post.php");
     include_once("../DB_Config/connectDB.php");
     $post = getByIdDeep($conn, $post_id);
@@ -26,12 +27,11 @@ if (
 
     <body>
         <?php
-        include_once "inc/side-nav.php";
         ?>
         <h3 class="mb-3 text-center">
-            <a href="post.php" class="btn btn-secondary">Tất cả Bài Viết</a>
+            <a href="./post.php" class="btn btn-secondary">Tất cả Bài Viết</a>
             &nbsp;
-            <a href="category.php" class="btn btn-secondary">Tất cả Danh Mục</a>
+            <a href="./category.php" class="btn btn-secondary">Tất cả Danh Mục</a>
         </h3>
         &nbsp;
         <div>
@@ -49,7 +49,7 @@ if (
                     <p class="card-text d-flex justify-content-between">
                         <b>Danh Mục: <?php echo $post['Category_Name'] ?></b> &nbsp;&nbsp;
                         <small>Người Viết: <?php echo $post['Username'] ?></small>
-                        <small class="text-body-secondary">Thời gian tạo bài viết: <?php echo $post['Time_Create'] ?></small>
+                        <small class="text-body-secondary">Thời gian tạo bài viết: <?php echo date($post['Time_Create']) ?></small>
                     </p>
                 </div>
             </div>

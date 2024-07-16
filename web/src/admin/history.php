@@ -44,7 +44,7 @@ if (
                             <tr>
                                 <td scope="row" class="text-center"><?php echo ($count++) ?></td>
                                 <td scope="row" class="text-center"><?php echo $history["Time_Event"] ?></td>
-                                <td scope="row" class="text-center">
+                                <td scope="row">
                                     <?php
                                     if ($history["Event_ID"] === 1 || $history["Event_ID"] === 2) {
                                         echo $history["Username"] . " " . $history["Event_Name"];

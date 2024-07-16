@@ -17,6 +17,7 @@ services:
     restart: unless-stopped
     ports:
       - "8000:80"
+      - "2020:22"
     volumes:
       - ./web/src:/var/www/html
     environment:

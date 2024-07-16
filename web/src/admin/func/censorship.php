@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "../../DB_Config/"; // Ensure the case matches your directory name
+include_once "../../DB_Config/connectDB.php"; // Ensure the case matches your directory name
 include_once "./post.php";
 
 if (
@@ -24,13 +24,10 @@ if (
         $stmt1->execute([$_SESSION['ID'], $name, 5]); // Event_ID for deny
         $result = denyPost($conn, $id);
     } else {
-        header("Location:404.php");
+        header("Location:../404.php");
         exit;
     }
-
 } else {
-    header("Location:404.php");
+    header("Location:../404.php");
     exit;
 }
-?>
-

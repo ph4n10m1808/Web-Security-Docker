@@ -76,11 +76,11 @@ function acceptPost($conn, $id)
     $res = $stmt->execute([1, $id]);
     if ($res) {
         $em = "Đã duyệt bài viết này";
-        header("Location: censorship.php?success=" . base64_encode($em));
+        header("Location: ../censorship.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Lỗi không xác định";
-        header("Location: censorship.php?error=" . base64_encode($em));
+        header("Location: ../censorship.php?error=" . base64_encode($em));
         exit;
     }
 }
@@ -92,11 +92,11 @@ function denyPost($conn, $id)
     $res = $stmt->execute([2, $id]);
     if ($res) {
         $em = "Đã tự chối duyệt bài viết này";
-        header("Location: censorship.php?success=" . base64_encode($em));
+        header("Location: ../censorship.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Lỗi không xác định";
-        header("Location: censorship.php?error=" . base64_encode($em));
+        header("Location: ../censorship.php?error=" . base64_encode($em));
         exit;
     }
 }

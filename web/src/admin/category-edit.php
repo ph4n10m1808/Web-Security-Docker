@@ -3,16 +3,16 @@ session_start();
 if (
     isset($_SESSION["User"]) &&
     $_SESSION["Role"] === "Admin" &&
-    $_GET['ID']
+    isset($_GET['ID'])
 ) {
     $id = $_GET['ID'];
-    include_once('inc/side-nav.php');
+    include_once("./inc/side-nav.php");
     include_once("./func/category.php");
     include_once("../DB_Config/connectDB.php");
-    $category = getCategoryNamebyID($conn, $id)
+    $category = getCategoryNamebyID($conn, $id);
 ?>
     <!DOCTYPE html>
-    <html>
+    <html lang="vi">
 
     <head>
         <title>Sửa Danh Mục</title>
@@ -22,51 +22,69 @@ if (
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../css/side-bar.css">
         <link rel="stylesheet" href="../css/style.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .container {
+                margin-top: 50px;
+            }
+
+            .form-container {
+                background: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .alert {
+                margin-top: 20px;
+            }
+        </style>
     </head>
 
     <body>
-        <div>
-            <h3 class="mb-3 text-center">Sửa danh mục
-                <br>
+        <div class="container">
+            <h3 class="mb-4 text-center">Sửa Danh Mục</h3>
+            <div class="text-center mb-4">
                 <a href="category.php" class="btn btn-secondary">Tất Cả Danh Mục</a>
-            </h3>
+            </div>
+
             <?php if (isset($_GET['error'])) { ?>
-                <div class="alert alert-warning">
+                <div class="alert alert-warning text-center">
                     <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
 
             <?php if (isset($_GET['success'])) { ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success text-center">
                     <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
 
-            <form class="shadow p-3" action="req/category-edit.php" method="post">
-                <input type="hidden" name="ID" value="<?php echo $id ?>">
-                <div class="mb-3">
-                    <label class="form-label">Tên Danh Mục Cũ </label>
-                    <input type="text" class="form-control" name="category" value="<?php echo $category ?> " readonly>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Tên Danh Mục Mới<i></i> </label>
-                    <input type="text" class="form-control" name="category1">
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button type="submit" class="btn btn-primary">Sửa</button>
-                </div>
-            </form>
-        </div>.
-        </section>
+            <div class="form-container shadow p-3">
+                <form action="./func/category-edit.php" method="post">
+                    <input type="hidden" name="ID" value="<?php echo $id ?>">
+                    <div class="mb-3">
+                        <label class="form-label">Tên Danh Mục Cũ</label>
+                        <input type="text" class="form-control" name="category" value="<?php echo $category ?>" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tên Danh Mục Mới</label>
+                        <input type="text" class="form-control" name="category_edit" required>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary">Sửa</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <!-- <script>
-            var navList = document.getElementById(`navList`).children;
-            navList.item(1).classList.add("active");
-        </script> -->
     </body>
 
     </html>
-<?php } else {
+<?php
+} else {
     header("Location:404.php");
     exit;
 }

@@ -17,10 +17,10 @@ session_start();
 </header>
 <div class="body">
     <nav class="side-bar">
-        <div class="user-p">
+        <!-- <div class="user-p">
             <img src="../upload/user/<?php echo $_SESSION['Avatar'] ?>">
             <h4><?php echo $_SESSION['User'] ?></h4>
-        </div>
+        </div> -->
         <ul class="navList">
             <li>
                 <a href="../index.php">

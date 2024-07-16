@@ -31,11 +31,11 @@ function deleteByIdCategory($conn, $id): void
     $res = $stmt->execute([$id]);
     if ($res) {
         $em = "Xóa thành công!";
-        header("Location: category.php?success=" . base64_encode($em));
+        header("Location: ../category.php?success=" . base64_encode($em));
         exit;
     } else {
         $em = "Lỗi không xác định!";
-        header("Location: category.php?error=" . base64_encode($em));
+        header("Location: ../category.php?error=" . base64_encode($em));
         exit;
     }
 }

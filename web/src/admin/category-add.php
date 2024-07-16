@@ -1,11 +1,10 @@
 <?php
 session_start();
+include('./inc/side-nav.php');
 if (
     isset($_SESSION["User"]) &&
     $_SESSION["Role"] === "Admin"
 ) {
-    include_once("././func/category.php");
-    include("../DB_Config/db_config.php");
 ?>
     <!DOCTYPE html>
     <html>
@@ -21,25 +20,22 @@ if (
     </head>
 
     <body>
-        <?php
-        include('./inc/side-nav.php');
-        ?>
         <div>
             <h3 class="mb-3 text-center">Tạo Danh Mục Mới
                 <br>
                 <a href="category.php" class="btn btn-secondary">Tất Cả Danh Mục</a>
             </h3>
             <?php if (isset($_GET['error'])) { ?>
-                <div class="alert alert-warning">
+                <div class="alert alert-warning text-center">
                     <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
             <?php if (isset($_GET['success'])) { ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success text-center">
                     <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
-            <form class="shadow p-3" action="req/category-create.php" method="post">
+            <form class="shadow p-3" action="./func/category-create.php" method="post">
                 <div class="mb-3">
                     <label class="form-label">Tên Danh Mục Mới</label>
                     <input type="text" class="form-control" name="category">
@@ -51,10 +47,6 @@ if (
         </div>.
         </section>
         </div>
-        <!-- <script>
-            var navList = document.getElementById(`navList`).children;
-            navList.item(1).classList.add("active");
-        </script> -->
     </body>
 
     </html>

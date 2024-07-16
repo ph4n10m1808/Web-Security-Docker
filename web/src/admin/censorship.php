@@ -6,6 +6,7 @@ if (
 ) {
     include_once("./func/post.php");
     include_once("../DB_Config/connectDB.php");
+    include_once("./inc/side-nav.php");
     $post = getAllPost($conn);
 ?>
     <!DOCTYPE html>
@@ -22,20 +23,17 @@ if (
     </head>
 
     <body>
-        <?php
-        include_once('inc/side-nav.php');
-        ?>
         <div>
             <br>
             <h4 class="mb-3 text-center">Bài Viết Đang Chờ</h4>
             <br>
             <?php if (isset($_GET['error'])) { ?>
-                <div class="alert alert-warning">
+                <div class="alert alert-warning text-center">
                     <?= base64_decode($_GET['error']) ?>
                 </div>
             <?php } ?>
             <?php if (isset($_GET['success'])) { ?>
-                <div class="alert alert-success">
+                <div class="alert alert-success text-center">
                     <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
@@ -55,7 +53,7 @@ if (
                     </thead>
                     <tbody>
                         <?php foreach ($post as $post) {
-                            if ($post["Status_ID"] === 0) {
+                            if (isset($post["Status_ID"])) {
                         ?>
                                 <tr>
                                     <th scope="row" class="text-center"><?php echo ($count++) ?></th>
@@ -64,9 +62,9 @@ if (
                                     <td scope="row" class="text-center"><?php echo $post["Category_Name"] ?></td>
                                     <td scope="row" class="text-center"><?php echo $post["Time_create"] ?></td>
                                     <td scope="row" class="text-center">
-                                        <a href="censorship-accpet.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-success">Đồng Ý</a>
+                                        <a href="./func/censorship.php?ID=<?php echo $post["Post_ID"] ?>&action=accept" class="btn btn-success">Đồng Ý</a>
                                         &nbsp;
-                                        <a href="censorship-deny.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-danger">Từ chối</a>
+                                        <a href="./func/censorship.php?ID=<?php echo $post["Post_ID"] ?>&action=deny" class="btn btn-danger">Từ chối</a>
                                     </td>
                                     <td scope="row" class="text-center" scope="row"><?php echo $post['Status_Name'] ?></td>
                                 </tr>

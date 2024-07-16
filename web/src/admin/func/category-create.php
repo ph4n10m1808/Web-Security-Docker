@@ -31,7 +31,7 @@ if (
             }
         }
     } else {
-        header("Location: ../category-add.php");
+        header("Location: ../category-add.php?error=" . base64_encode("Lỗi không xác định"));
         exit;
     }
 } else {
