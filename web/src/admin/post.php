@@ -69,9 +69,9 @@ if (
                                 <td class="text-center" scope="row"><?php echo $post["Category_Name"] ?></td>
                                 <td class="text-center" scope="row"><?php echo $post["Time_create"] ?></td>
                                 <td class="text-center" scope="row">
-                                    <a href="post-edit.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-success">Sửa</a>
+                                    <a href="./post-edit.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-success">Sửa</a>
                                     <br> &nbsp;&nbsp;<br>
-                                    <a href="post-delete.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-danger">Xóa</a>
+                                    <a href="./func/post-delete.php?ID=<?php echo $post["Post_ID"] ?>" class="btn btn-danger">Xóa</a>
                                 </td>
                                 <td class="text-center" scope="row"><?php echo $post['Status_Name'] ?></td>
                             </tr>

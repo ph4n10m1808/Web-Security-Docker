@@ -17,7 +17,6 @@ services:
     restart: unless-stopped
     ports:
       - "8000:80"
-      - "2020:22"
     volumes:
       - ./web/src:/var/www/html
     environment:
@@ -26,3 +25,11 @@ services:
       - MYSQL_DATABASE=PHP_Myblog
       - MYSQL_USER=db_user
       - MYSQL_PASSWORD=db_password
+  phpmyadmin:
+    container_name: phpmyadmin_MyBlog
+    image: phpmyadmin/phpmyadmin:4.8.1
+    ports:
+      - "8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306

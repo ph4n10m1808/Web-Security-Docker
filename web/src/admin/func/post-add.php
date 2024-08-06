@@ -46,7 +46,7 @@ if (
                         $stmt1 = $conn->prepare($sql1);
                         $stmt1->execute([$_SESSION['ID'], $title, 3]);
                         $sm = "Thêm Bài Viết Thành Công!";
-                        header("Location: ../post-add.php?success=" . base64_encode($sm));
+                        header("Location: ../post.php?success=" . base64_encode($sm));
                         exit;
                     } else {
                         $em = "Lỗi Không Xác Định!";
@@ -56,15 +56,15 @@ if (
                 }
             }
         } else {
-            $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Status_Check) VALUES(?,?,?,?,?)";
+            $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Status_ID) VALUES(?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
-            $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, 3]);
+            $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, 0]);
             if ($res) {
                 $sql1 = "INSERT INTO history(User_ID, Post_Tittle, Event_ID) VALUES (?,?,?)";
                 $stmt1 = $conn->prepare($sql1);
                 $stmt1->execute([$_SESSION['ID'], $tittle, 3]);
                 $sm = "Thêm Bài Viết mới Thành Công";
-                header("Location: ../post-add.php?success=" . base64_encode($sm));
+                header("Location: ../post.php?success=" . base64_encode($sm));
                 exit;
             } else {
                 $em = "Lỗi Không xác định";

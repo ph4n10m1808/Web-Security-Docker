@@ -50,7 +50,7 @@ if (
                 </div>
             <?php } ?>
 
-            <form class="shadow p-3" action="req/post-edit.php" method="post" enctype="multipart/form-data">
+            <form class="shadow p-3" action="./func/post-edit.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="ID" value="<?php echo $id ?>">
                 <div class="mb-3">
                     <label class="form-label">Tiêu Đề</label>

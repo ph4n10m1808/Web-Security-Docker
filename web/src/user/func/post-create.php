@@ -56,7 +56,7 @@ if (
                 }
             }
         } else {
-            $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Status_Check) VALUES(?,?,?,?,?)";
+            $sql = "INSERT INTO post(Writer_ID, Post_Tittle, Post_Content, Category_ID, Status_ID) VALUES(?,?,?,?,?)";
             $stmt = $conn->prepare($sql);
             $res = $stmt->execute([$_SESSION['ID'], $title, $text, $category, 0]);
             if ($res) {

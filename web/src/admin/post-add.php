@@ -43,7 +43,7 @@ if (
                     <?= base64_decode($_GET['success']) ?>
                 </div>
             <?php } ?>
-            <form class="shadow p-3" action="req/post-create.php" method="post" enctype="multipart/form-data">
+            <form class="shadow p-3" action="./func/post-create.php" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label">Tiêu Đề</label>
                     <input type="text" class="form-control" name="title">
